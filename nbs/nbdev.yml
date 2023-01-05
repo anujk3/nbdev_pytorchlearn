@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "nbdev_pytorchlearn"
+  site-url: "https://anujk3.github.io/nbdev_pytorchlearn"
+  description: "Learning nbdev and pytorch together"
+  repo-branch: main
+  repo-url: "https://github.com/anujk3/nbdev_pytorchlearn"
