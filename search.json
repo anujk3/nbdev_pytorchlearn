@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "nbdev_pytorchlearn",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation."
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "nbdev_pytorchlearn",
+    "section": "Install",
+    "text": "Install\npip install nbdev_pytorchlearn"
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "nbdev_pytorchlearn",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2\n\n\n\nimport torch\n\n\ntorch.ones([3, 3])\n\ntensor([[1., 1., 1.],\n        [1., 1., 1.],\n        [1., 1., 1.]])"
+  },
+  {
+    "objectID": "pytorchbasics.html",
+    "href": "pytorchbasics.html",
+    "title": "pytorch_basics",
+    "section": "",
+    "text": "import torch"
+  },
+  {
+    "objectID": "pytorchbasics.html#tensor-math-comparison-operations",
+    "href": "pytorchbasics.html#tensor-math-comparison-operations",
+    "title": "pytorch_basics",
+    "section": "Tensor Math & Comparison Operations",
+    "text": "Tensor Math & Comparison Operations\n\nx = torch.tensor([1, 2, 3])\ny = torch.tensor([9, 8, 7])\n\n\nAddition\n\nx + y\n\ntensor([10, 10, 10])\n\n\n\n# Addition\n\nz1 = torch.empty(3)\ntorch.add(x, y, out=z1)\nz1\n\ntensor([10., 10., 10.])\n\n\n\nz2 = torch.add(x, y)\nz = x + y\n\n\n\nSubtraction\n\nz = x - y\nz\n\ntensor([-8, -6, -4])\n\n\n\n\nDivision\n\nz = torch.true_divide(x, y)\nz\n\ntensor([0.1111, 0.2500, 0.4286])\n\n\n\nt = torch.zeros(3)\nt.add_(x)\nt\n\ntensor([1., 2., 3.])\n\n\n\nt = t+x\nt\n\ntensor([2., 4., 6.])\n\n\n\nz = x.pow(2)\nz\n\ntensor([1, 4, 9])\n\n\n\nx**2\n\ntensor([1, 4, 9])\n\n\n\n# Simple Comparison\nz = x > 0\nz\n\ntensor([True, True, True])\n\n\n\nz = x < 0\nz\n\ntensor([False, False, False])\n\n\n\n# Matrix Mul\nx1 = torch.rand((2, 5))\nx2 = torch.rand((5, 3))\nx3 = torch.mm(x1, x2) # 2X3\n\n\nx3\n\ntensor([[0.9657, 0.9245, 1.0498],\n        [1.1735, 1.0772, 1.1241]])\n\n\n\nx3 = x1.mm(x2)\nx3\n\ntensor([[0.9657, 0.9245, 1.0498],\n        [1.1735, 1.0772, 1.1241]])\n\n\n\nmatrix_exp = torch.rand(5, 5)\nprint(matrix_exp.matrix_power(3))\n\ntensor([[3.4061, 3.3285, 4.6868, 4.7045, 4.3597],\n        [4.0044, 3.5835, 4.6551, 5.1733, 5.3702],\n        [4.2547, 3.5539, 4.7585, 5.2007, 5.7601],\n        [5.2401, 4.6679, 6.3958, 6.7681, 6.9491],\n        [3.6504, 3.6664, 4.9608, 4.9669, 4.8504]])\n\n\n\n# element wise multiply\nz = x * y\nz\n\ntensor([ 9, 16, 21])\n\n\n\n# dot product\nz = torch.dot(x,y)\nz\n\ntensor(46)\n\n\n\n# Batch Matrix Multiplication\n\nbatch = 32\nn = 10\nm = 20\np = 30\n\ntensor1 = torch.rand((batch, n, m))\ntensor2 = torch.rand((batch, m, p))\nout_bmm = torch.bmm(tensor1, tensor2) # (batch, n, p)\n# out_bmm\n\n\n# Example of broadcasting\n\nx1 = torch.rand((5, 5))\nx2 = torch.rand((1, 5))\n\nz = x1-x2\nz\n\ntensor([[ 0.0517, -0.0518,  0.0576,  0.4054,  0.2466],\n        [ 0.0380,  0.2111,  0.0332,  0.0230, -0.0932],\n        [ 0.0586,  0.5420, -0.3055,  0.3387,  0.5463],\n        [ 0.4310,  0.1885, -0.0734, -0.2408, -0.3285],\n        [ 0.7844,  0.1728, -0.5003,  0.1454, -0.1766]])\n\n\n\nz = x1**x2\nz\n\ntensor([[0.9244, 0.6636, 0.8768, 0.9402, 0.8372],\n        [0.9192, 0.8212, 0.8567, 0.7176, 0.6221],\n        [0.9268, 0.9449, 0.5635, 0.9058, 0.9711],\n        [0.9759, 0.8107, 0.7679, 0.5010, 0.3230],\n        [0.9936, 0.8031, 0.3751, 0.7965, 0.5458]])\n\n\n\nsum_x = torch.sum(x, dim=0)\n\n\nsum_x\n\ntensor(6)\n\n\n\nx\n\ntensor([1, 2, 3])\n\n\n\nvalue, indices = torch.max(x, dim=0)  # x.max(dim=0)\nvalue, indices\n\n(tensor(3), tensor(2))\n\n\n\nvalue, indices = torch.min(x, dim=0)\nvalue, indices\n\n(tensor(1), tensor(0))\n\n\n\nabs_x = torch.abs(x)\nabs_x\n\ntensor([1, 2, 3])\n\n\n\nz = torch.argmax(x, dim=0)\nz\n\ntensor(2)\n\n\n\nz = torch.argmin(x, dim=0)\nz\n\ntensor(0)\n\n\n\nmean_x = torch.mean(x, dim=0)\nmean_x\n\nRuntimeError: mean(): could not infer output dtype. Input dtype must be either a floating point or complex dtype. Got: Long\n\n\n\nmean_x = torch.mean(x.float(), dim=0)\nmean_x\n\ntensor(2.)\n\n\n\nz = torch.eq(x, y)\nx, y, z\n\n(tensor([1, 2, 3]), tensor([9, 8, 7]), tensor([False, False, False]))\n\n\n\ntorch.eq(torch.tensor([1, 2, 3]), torch.tensor([1, 2, 3]))\n\ntensor([True, True, True])\n\n\n\nsorted_y, indices = torch.sort(y, dim=0, descending=False)\nsorted_y, indices\n\n(tensor([7, 8, 9]), tensor([2, 1, 0]))\n\n\n\nz = torch.clamp(x, min=2, max=10)\nz\n\ntensor([2, 2, 3])\n\n\n\nx = torch.tensor([1, 0, 1, 1, 1], dtype=torch.bool)\nz = torch.any(x)\nz\n\ntensor(True)\n\n\n\nz = torch.all(x)\nz\n\ntensor(False)\n\n\n\n\nIndexing in the tensor\n\nbatch_size = 10\nfeatures = 25\nx = torch.rand((batch_size, features))\n\n\nx[0].shape\n\ntorch.Size([25])\n\n\n\nx[0,:]\n\ntensor([5.0281e-02, 8.0261e-01, 4.5414e-01, 7.8423e-01, 5.4225e-01, 8.7366e-03,\n        4.7087e-01, 7.5007e-01, 1.1418e-01, 2.0105e-04, 9.3874e-01, 4.5055e-01,\n        4.3165e-01, 4.1808e-01, 6.4711e-01, 3.1144e-01, 1.5807e-01, 6.2771e-01,\n        3.7119e-01, 5.6732e-01, 1.2717e-01, 3.3985e-01, 4.8032e-01, 2.8782e-01,\n        8.5632e-02])\n\n\n\nx[:, 0]\n\ntensor([0.0503, 0.5784, 0.5308, 0.7473, 0.8517, 0.0040, 0.9692, 0.6234, 0.0279,\n        0.5623])\n\n\n\nx[2, :10]  # third example first 10 elements\n\ntensor([0.5308, 0.2278, 0.0590, 0.2630, 0.2816, 0.3264, 0.3253, 0.1864, 0.4376,\n        0.1643])\n\n\n\nx[0, 0] = 100\n\n\nx = torch.arange(10)\nindices = [2, 5, 8]\n\n\nx[indices]\n\ntensor([2, 5, 8])\n\n\n\nx = torch.rand((3, 5))\nrows = torch.tensor([1, 0])\ncols = torch.tensor([4, 0])\nx[rows, cols].shape\n\ntorch.Size([2])\n\n\n\nx = torch.arange(10)\nx[(x < 2) | (x > 8)]\n\ntensor([0, 1, 9])\n\n\n\nx[(x < 2) & (x > 8)]\n\ntensor([], dtype=torch.int64)\n\n\n\nx[x.remainder(2) == 0]\n\ntensor([0, 2, 4, 6, 8])\n\n\n\ntorch.where(x > 5, x, x * 2)\n\ntensor([ 0,  2,  4,  6,  8, 10,  6,  7,  8,  9])\n\n\n\ntorch.tensor([0, 0, 1, 1, 2, 3, 4, 5, 5]).unique()\n\ntensor([0, 1, 2, 3, 4, 5])\n\n\n\nx.ndimension()\n\n1\n\n\n\n\nTensor Reshaping\n\nx = torch.arange(9)\n\n\nx_3x3 = x.view(3, 3)  # works on contiguous arrays\n\n\nx_3x3\n\ntensor([[0, 1, 2],\n        [3, 4, 5],\n        [6, 7, 8]])\n\n\n\nx_3x3 = x.reshape(3, 3)\nx_3x3\n\ntensor([[0, 1, 2],\n        [3, 4, 5],\n        [6, 7, 8]])\n\n\n\ny = x_3x3.t()\n\n\ny\n\ntensor([[0, 3, 6],\n        [1, 4, 7],\n        [2, 5, 8]])\n\n\n\ny.view(9) # because after transpose, the memory does not stay contiguous. Reshape always works, but where view also works - it could be not that performant.\n\nRuntimeError: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.\n\n\n\ny.reshape(9)\n\ntensor([0, 3, 6, 1, 4, 7, 2, 5, 8])\n\n\n\ny.contiguous().view(9)\n\ntensor([0, 3, 6, 1, 4, 7, 2, 5, 8])\n\n\n\nx1 = torch.rand((2, 5))\nx2 = torch.rand((2, 5))\n\ntorch.cat((x1, x2), dim = 0).shape\n\ntorch.Size([4, 5])\n\n\n\ntorch.cat((x1, x2), dim = 1).shape\n\ntorch.Size([2, 10])\n\n\n\nz = x1.view(-1)\nz.shape\n\ntorch.Size([10])\n\n\n\nbatch = 64\nx = torch.rand(batch, 2, 5, 5)\nz = x.view(batch, -1)\nz.shape\n\ntorch.Size([64, 50])\n\n\n\n# How to switch the axis\n\nx = torch.rand((batch, 2, 5))\nz = x.permute(0, 2, 1)\nz.shape\n\ntorch.Size([64, 5, 2])\n\n\n\nx = torch.arange(10)\nx.shape\n\ntorch.Size([10])\n\n\n\nx.unsqueeze(0).shape # (1-dimensional to 2-dimensional)\n\ntorch.Size([1, 10])\n\n\n\nx.unsqueeze(1).shape # (1-dimensional to 2-dimensional)\n\ntorch.Size([10, 1])\n\n\n\nx = torch.arange(10).unsqueeze(0).unsqueeze(1) # 1x1x10\nx.shape\n\ntorch.Size([1, 1, 10])\n\n\n\nz = x.squeeze(1)\nz.shape\n\ntorch.Size([1, 10])"
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nsay_hello\n\n say_hello (to)\n\nSay hello to somebody\n\n# Lets test it\n\n\nassert say_hello(\"Isaac\") == \"Hello Isaac!!\"\n\nAssertionError:"
+  }
+]
